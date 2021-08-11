@@ -89,7 +89,7 @@
 
                 <div class="links">
                 
-                    <!-- <a href="https://github.com/EvaKonst/webproj">GitHub</a> -->
+                    <a href="https://github.com/EvaKonst/webproj">GitHub</a>
                 </div>
             </div>
         </div>
