@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin_dashboard', 'Admin\DashboardController@index')->middleware('role:admin');
 Route::get('/user_dashboard', 'User\DashboardController@index')->middleware('role:user');
+Route::get('/change-password', 'User\ChangePasswordController@index')->middleware('role:user');
+Route::post('/change-password', 'User\ChangePasswordController@store')->name('change.password');
