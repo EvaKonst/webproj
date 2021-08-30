@@ -34,10 +34,6 @@ class User extends Authenticatable
      * @var array
      */
 
-    public function hars()
-    {
-        return $this->hasMany(Har::class);
-    }
 
     protected $casts = [
         'email_verified_at' => 'datetime',
