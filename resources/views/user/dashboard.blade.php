@@ -158,11 +158,11 @@
                 </div>
             </div>
                 <div class="Row" style= "display:flex; justify-content:space-between;">
-
-                <button class="myDIV button" type="Store locally" name="store_har" > Store data locally </button>
-                <button class="myDIV button" type="Upload Data" name="upload_har"> Upload data </button>
+                <div class="col text-center">
+                <button class="myDIV button" type="fileUpload" name="upload_har" > Upload har File </button>
+                
             
-            
+            </div>
             </div>
             </div>
             
