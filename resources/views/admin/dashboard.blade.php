@@ -1,143 +1,42 @@
-@extends('layouts.app')
-@section('content')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+<head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Laravel</title> 
+
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+        <!-- Scripts -->
 
         <!-- Styles -->
-        <style>
-            
-            html, body {
-                background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('https://cedar-pro.com/wp-content/uploads/2017/07/data-analytics.png');
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-            .Row: after {
-                
-                content: "";
-                clear: both;
-                display: table;
-                width: 100px;
-                height: 100px;
-                
-                background-clip: padding-box;
-    
-            }
-            .Column{
-               
-                display: table-cell;
-                float: left;
-                width: 25%;
-                padding: 50px;
-                margin: 10px;
-                border: 3px solid #ffcba4;
-                background-color: #ffcba4;
-                opacity:0.7;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-                
-            }
-            .h1{
-                color: #fff;  
-            }
-            .container {
-                align-items: center;
-                text-align: center;
-                height: 100px;
-            }
-            .container:hover{
-                opacity:0.3;
-                
-                align-items: center;
-                height: 100px;
-                
-                
-            }
-            .links > a {
-                color: #fff;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-            .hide {
-                opacity:0;
-            }   
-
-            .myDIV:hover{
-                display: block;
-                opacity:1;
-            }
-            .hide:hover {
-                display: block;
-                opacity:1;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-            .button {
-                background-color:#92a1cf
-            }
-
-        </style>
+        <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+ 
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+    <ul class="navbar-nav ml-auto">
            @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                      @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                                    </form>
+                                </div>
                     @endauth
                 </div>
             @endif 
+    </ul>       
         <div class="Row" style= "display:flex; justify-content:space-between; hover{opacity:0.2;}">
 
             
@@ -168,11 +67,7 @@
             </div>
                   
         </div>
-        
-        
-
 
     </body>
 </html>
 
-@endsection
