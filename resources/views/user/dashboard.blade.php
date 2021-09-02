@@ -15,6 +15,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/user/har_edit.js') }}" defer></script> 
+        <script src="{{asset('js/app.js')}}" ></script>
 
         <!-- Styles -->
         <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
@@ -61,7 +62,7 @@
 
                 <a id="exportJSON" onclick="exportJson(this);" class="btn"><button class="myDIV button"> Store data locally</a></button> 
 
-                <button class="myDIV button" type="Upload Data" name="upload_har"> Upload data </button>
+                <button id="uploadJSON" class="myDIV button" type="Upload Data"> Upload data </button>
                 </div>
                 </div>
                 
