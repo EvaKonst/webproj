@@ -110,9 +110,15 @@ function exportJson(el) {
         }
       }    
 
+      
 var uploadJSON = document.getElementById("uploadJSON");
 
 uploadJSON.addEventListener("click",()=>{
+preventDefault();
+});
+
+function uploadJson(){
+//uploadJSON.addEventListener("click",()=>{
    // getUploadData().then(result=>{
   //      findUserData().then(data=>{
     
@@ -123,9 +129,10 @@ uploadJSON.addEventListener("click",()=>{
    //       };
         postData(myobj)
         //  postData(tempData);
-   //     })
+   //     }) 
   //  })
-});
+//});
+}
 
 function getUploadData(){
     //a promise is a returned object to which you attach callbacks, instead of passing callbacks into a function
@@ -255,19 +262,21 @@ function postData(userData){
                   Response_expires: Response_expires,
                   Response_last_modified : Response_last_modified,
                   Response_host: Response_host,
-                  _token: '{{csrf_token()}}'},
+                  },
                    
                 cache: false,
                 success: function(data){
 			   
                 }
               }); 
+
+              $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});  
 }
             alert("okay"); 
-          }
-//$.ajaxSetup({
-//  headers: {
-//    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//  }
-//});  
+
+}
    

@@ -14,7 +14,7 @@ class CreateEntriesTable extends Migration
     public function up()
     {
         Schema::create('entries', function (Blueprint $table) {
-         //  $table->bigIncrements('id');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->double('wait', 15, 8)->nullable();
             $table->string('request_method')->nullable();
@@ -24,14 +24,14 @@ class CreateEntriesTable extends Migration
             $table->bigInteger('response_age')->nullable();
           //  'res_serverLocation'
             $table->bigInteger('request_age')->nullable();
-            $table->string('Request_content_type ')->nullable();
+            $table->string('Request_content_type')->nullable();
             $table->string('Request_cache_control')->nullable();
             $table->string('Request_pragma')->nullable();
             $table->string('Request_expires')->nullable();
             $table->string('Request_last_modified')->nullable();
             $table->string('Request_host')->nullable();
             $table->string('startedDateTime')->nullable();
-            $table->string('Response_content_type ')->nullable();
+            $table->string('Response_content_type')->nullable();
             $table->string('Response_cache_control')->nullable();
             $table->string('Response_pragma')->nullable();
             $table->string('Response_expires')->nullable();

@@ -61,8 +61,14 @@
                 <pre id="output"></pre> 
 
                 <a id="exportJSON" onclick="exportJson(this);" class="btn"><button class="myDIV button"> Store data locally</a></button> 
-
-                <button id="uploadJSON" class="myDIV button" type="Upload Data"> Upload data </button>
+                 
+             <!--     <a href="#0" id="uploadJSON" onclick="uploadJson(); return false;" class="btn"><button class="myDIV button"> Upload data</a></button> 
+           <a href="#0" id="ajaxCall">AJAX</a>  -->
+           <form action = "/user_dashboard" method = "post" id="uploadJSON">
+           @csrf
+                <input id="uploadJSON" class="myDIV button" type="submit" value="Upload data"/>
+           <!--    <button id="uploadJSON" onclick="uploadJson(); return false;" type="submit">Upload data </button> -->
+            </form>
                 </div>
                 </div>
                 

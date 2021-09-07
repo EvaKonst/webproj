@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\User;
 //namespace App\Http\Json;
 
+use Auth;
 use App\Http\Controllers\Controller;
 use App\Entry;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class DashboardController extends Controller {
   public function __construct() {
     $this->middleware('auth');
   }
-  public function index() {
+  public function create() {
     return view('user.dashboard');
   }
   public function store(Request $request)
@@ -22,6 +23,9 @@ class DashboardController extends Controller {
     //        "statusCode"=>200
     //    ));
     \DB::table('entries')->insert([
+
+      'id' => Auth::user()->first()->entries() -> first() -> id,
+      'user_id' => Auth::user()->first()->entries() ->first() -> user_id,
       'wait' => $request->wait, //This wait coming from ajax request
       'request_method' => $request->request_method,
       'url' => $request->url,
@@ -43,5 +47,6 @@ class DashboardController extends Controller {
       'Response_last_modified' => $request->Response_last_modified,
       'Response_host' => $request->Response_host,
   ]);
+
     }
 }
