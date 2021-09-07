@@ -24,8 +24,8 @@ class DashboardController extends Controller {
     //    ));
     \DB::table('entries')->insert([
 
-      'id' => Auth::user()->first()->entries() -> first() -> id,
-      'user_id' => Auth::user()->first()->entries() ->first() -> user_id,
+      //'id' => Auth::user()->first()->entries() -> first() -> id,
+      'user_id' => Auth::user()->id,
       'wait' => $request->wait, //This wait coming from ajax request
       'request_method' => $request->request_method,
       'url' => $request->url,
