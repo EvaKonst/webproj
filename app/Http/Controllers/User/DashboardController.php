@@ -44,7 +44,6 @@ class DashboardController extends Controller {
     $Response_host  = $request->Response_host;
     
     \DB::table('entries')->insert([
-
       
       'user_id' => Auth::user()->id,
       'wait'=>$wait, //This wait coming from ajax request
