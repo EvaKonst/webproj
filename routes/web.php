@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/welcome', 'HomeController@index')->name('welcome');
 Route::get('/admin_dashboard', 'Admin\DashboardController@index')->middleware('role:admin');
 Route::get('/user_dashboard', 'User\DashboardController@create')->middleware('role:user');
 Route::post('/user_dashboard', 'User\DashboardController@store')->name('user.dashboard');
