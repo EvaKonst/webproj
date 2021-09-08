@@ -18,29 +18,30 @@ class CreateEntriesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->double('wait', 15, 8)->nullable();
             $table->string('request_method')->nullable();
-            $table->string('url')->nullable();
-            $table->bigInteger('response_status')->nullable();
-            $table->string('response_status_Text')->nullable();
-            $table->bigInteger('response_age')->nullable();
+            $table->string('url')-> nullable();
+            $table->bigInteger('response_status')-> nullable();
+            $table->string('response_status_Text')-> nullable();
+            $table->bigInteger('response_age')-> nullable();
           //  'res_serverLocation'
-            $table->bigInteger('request_age')->nullable();
-            $table->string('Request_content_type')->nullable();
-            $table->string('Request_cache_control')->nullable();
-            $table->string('Request_pragma')->nullable();
-            $table->string('Request_expires')->nullable();
-            $table->string('Request_last_modified')->nullable();
-            $table->string('Request_host')->nullable();
-            $table->string('startedDateTime')->nullable();
-            $table->string('Response_content_type')->nullable();
-            $table->string('Response_cache_control')->nullable();
-            $table->string('Response_pragma')->nullable();
-            $table->string('Response_expires')->nullable();
-            $table->string('Response_last_modified')->nullable();
-            $table->bigInteger('Response_host')->nullable();
+            $table->bigInteger('request_age')-> nullable();
+            $table->string('Request_content_type')-> nullable();
+            $table->string('Request_cache_control')-> nullable();
+            $table->string('Request_pragma')-> nullable();
+            $table->string('Request_expires')-> nullable();
+            $table->string('Request_last_modified')-> nullable();
+            $table->string('Request_host')-> nullable();
+            $table->string('startedDateTime')-> nullable();
+            $table->string('Response_content_type')-> nullable();
+            $table->string('Response_cache_control')-> nullable();
+            $table->string('Response_pragma')-> nullable();
+            $table->string('Response_expires')-> nullable();
+            $table->string('Response_last_modified')-> nullable();
+            $table->bigInteger('Response_host')-> nullable();
 
             $table->timestamps();
 
             $table->index('user_id');
+            
         });
     }
 

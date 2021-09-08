@@ -64,7 +64,7 @@
                  
              <!--     <a href="#0" id="uploadJSON" onclick="uploadJson(); return false;" class="btn"><button class="myDIV button"> Upload data</a></button> 
            <a href="#0" id="ajaxCall">AJAX</a>  -->
-           <form action = "/user_dashboard" method = "post" id="uploadJSON">
+           <form method = "post" id="uploadJSON">
            @csrf
                 <input id="uploadJSON" class="myDIV button" type="submit" value="Upload data"/>
            <!--    <button id="uploadJSON" onclick="uploadJson(); return false;" type="submit">Upload data </button> -->

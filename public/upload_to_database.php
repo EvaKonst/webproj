@@ -44,6 +44,7 @@
 
         //timings
         $wait=$myobj->wait;
+
         //request_method
         $request_method=$myobj->request_method;
         //request_URL
@@ -79,7 +80,7 @@
         $Response_expires =  $myobj->Response_expires; 
         $Response_last_modified =  $myobj->$Response_last_modified; 
         $Response_host =  $myobj->$Response_host; 
-
+        
         //checking the response headers and saving their values
 /*        $res_headers=$myobj->response->headers;
         foreach($res_headers as $header){

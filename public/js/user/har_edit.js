@@ -114,8 +114,8 @@ function exportJson(el) {
 var uploadJSON = document.getElementById("uploadJSON");
 
 uploadJSON.addEventListener("click",()=>{
-preventDefault();
-});
+ uploadJson();
+   });
 
 function uploadJson(){
 //uploadJSON.addEventListener("click",()=>{
@@ -132,6 +132,7 @@ function uploadJson(){
    //     }) 
   //  })
 //});
+
 }
 
 function getUploadData(){
@@ -213,35 +214,35 @@ function postData(userData){
   //  });
 
   
-  for(let i=0; i<userData.length; i++){
-   
-      wait = userData[i].wait;
-      request_method= userData[i].request_method;
-      url= userData[i].url;
-      response_status = userData[i].response_status;
-      response_status_Text = userData[i].response_status_Text;
-      response_age = userData[i].response_age;
-      request_age= userData[i].request_age;
-      Request_content_type= userData[i].Request_content_type;
-      Request_cache_control= userData[i].Request_cache_control;
-      Request_pragma = userData[i].Request_pragma;
-      Request_expires= userData[i].Request_expires;
-      Request_last_modified= userData[i].Request_last_modified;
-      Request_host = userData[i].Request_host;
-      startedDateTime= userData[i].startedDateTime;
-      Response_content_type= userData[i].Response_content_type;
-      Response_cache_control= userData[i].Response_cache_control;
-      Response_pragma= userData[i].Response_pragma;
-      Response_expires= userData[i].Response_expires;
-      Response_last_modified = userData[i].Response_last_modified;
-      Response_host= userData[i].Response_host;
+  
+      wait= userData[1].wait;
+      request_method= userData[1].request_method;
+      url= userData[1].url;
+      response_status = userData[1].response_status;
+      response_status_Text = userData[1].response_status_Text;
+      response_age = userData[1].response_age;
+      request_age= userData[1].request_age;
+      Request_content_type= userData[1].Request_content_type;
+      Request_cache_control= userData[1].Request_cache_control;
+      Request_pragma = userData[1].Request_pragma;
+      Request_expires= userData[1].Request_expires;
+      Request_last_modified= userData[1].Request_last_modified;
+      Request_host = userData[1].Request_host;
+      startedDateTime= userData[1].startedDateTime;
+      Response_content_type= userData[1].Response_content_type;
+      Response_cache_control= userData[1].Response_cache_control;
+      Response_pragma= userData[1].Response_pragma;
+      Response_expires= userData[1].Response_expires;
+      Response_last_modified = userData[1].Response_last_modified;
+      Response_host= userData[1].Response_host;
+      console.log(wait);
 
               $.ajax({
                // url: '{{url("/user_dashboard")}}' ,
                url: '/user_dashboard',
                 type: "POST",
                 data: {
-                  
+                
                   wait: wait, 
                   request_method: request_method,
                   url: url,
@@ -263,7 +264,7 @@ function postData(userData){
                   Response_last_modified : Response_last_modified,
                   Response_host: Response_host,
                   },
-                   
+            
                 cache: false,
                 success: function(data){
 			   
@@ -275,8 +276,10 @@ function postData(userData){
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });  
-}
-            alert("okay"); 
+ event.preventDefault();
+ 
+            alert(request_method); 
+            
 
 }
    
