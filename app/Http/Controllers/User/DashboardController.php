@@ -24,7 +24,7 @@ class DashboardController extends Controller {
     //    ));
     $wait = $request-> wait;
     $request_method = $request->request_method;
-    $url = $request->url;
+    $request_URL = $request->request_URL;
     $response_status = $request->response_status;
     $response_status_Text = $request->response_status_Text;
     $response_age = $request->response_age;
@@ -51,7 +51,7 @@ class DashboardController extends Controller {
       'user_id' => Auth::user()->id,
       'wait'=>$wait, //This wait coming from ajax request
       'request_method'=>$request_method,
-      'url'=>$url,
+      'url'=>$request_URL,
       'response_status'=>$response_status,
       'response_status_Text'=>$response_status_Text,
       'response_age' =>$response_age,

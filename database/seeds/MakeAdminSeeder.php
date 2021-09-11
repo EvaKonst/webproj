@@ -12,5 +12,6 @@ class MakeAdminSeeder extends Seeder
     public function run()
     {
         DB::table('users')->where('name', 'Eva')->update(['role' => 'admin']);
+        DB::table('users')->where('name', 'Foteini')->update(['role' => 'admin']);
     }
 }
