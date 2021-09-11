@@ -42,7 +42,10 @@ class DashboardController extends Controller {
     $Response_expires = $request->Response_expires;
     $Response_last_modified = $request->Response_last_modified;
     $Response_host  = $request->Response_host;
-    
+    $longitude = $request->longitude;
+    $latitude = $request->latitude;
+    $provider = $request->provider;
+
     \DB::table('entries')->insert([
       
       'user_id' => Auth::user()->id,
@@ -66,6 +69,9 @@ class DashboardController extends Controller {
       'Response_expires'=>$Response_expires,
       'Response_last_modified'=>$Response_last_modified,
       'Response_host'=>$Response_host,
+      'longitude'=>$longitude,
+      'latitude'=>$latitude,
+      'provider'=>$provider,
   ]);
 
     }
