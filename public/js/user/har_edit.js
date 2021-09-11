@@ -15,18 +15,20 @@ for (x in entries) {
     
     let myarray = entries[x];
     let url = myarray.request.url;
-    var new_url = url.replace('http://','').replace('https://','').split(/[/?#]/)[0];
+    //console.log(url);
+    var cleanedUrl = url.split('/')[2];
+    //console.log(cleanedUrl);
 
     myobj[x] = {
         startedDateTime: myarray.startedDateTime,
         wait: myarray.timings.wait,
         serverIPAddress: myarray.serverIPAddress,
         request_method: myarray.request.method,
-        request_URL: new_url,
+        request_URL: cleanedUrl,
         response_status: myarray.response.status,
         response_status_Text: myarray.response.statusText
-        };
-    
+        }
+    //console.log(request_URL);
     for(y in myarray.request.headers){
         
         let headerName1 = myarray.request.headers[y].name;
@@ -247,7 +249,7 @@ function getUploadData(){
       
       wait = userData[i].wait;
       request_method = userData[i].request_method;
-      url = userData[i].url;
+      request_URL= myobj[i].request_URL;
       response_status = userData[i].response_status;
       response_status_Text = userData[i].response_status_Text;
       response_age = userData[i].response_age;
@@ -268,7 +270,7 @@ function getUploadData(){
       longitude = longitude;
       latitude = latitude;
       provider = provider;
-      console.log(wait); 
+      console.log(request_URL); 
       console.log(latitude);
       
               $.ajax({
@@ -279,7 +281,7 @@ function getUploadData(){
                 
                   wait: wait, 
                   request_method: request_method,
-                  url: url,
+                  request_URL: request_URL,
                   response_status : response_status,
                   response_status_Text : response_status_Text,
                   response_age : response_age,
