@@ -37,6 +37,9 @@ class CreateEntriesTable extends Migration
             $table->string('Response_expires')-> nullable();
             $table->string('Response_last_modified')-> nullable();
             $table->bigInteger('Response_host')-> nullable();
+            $table->double('longitude', 15, 8)->nullable();
+            $table->double('latitude', 15, 8)->nullable();
+            $table->string('provider')-> nullable();
 
             $table->timestamps();
 

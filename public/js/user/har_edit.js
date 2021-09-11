@@ -10,6 +10,7 @@ var myfileobj = JSON.parse(fr.result);
 const entries = myfileobj.log.entries;
 myobj = [];
 
+
 for (x in entries) {
     
     let myarray = entries[x];
@@ -118,17 +119,21 @@ uploadJSON.addEventListener("click",()=>{
    });
 
 function uploadJson(){
-//uploadJSON.addEventListener("click",()=>{
-   // getUploadData().then(result=>{
-  //      findUserData().then(data=>{
-    
-  //        var tempData = {
-  //          location: data.location,
-   //         provider: data.provider,
-   //         data: result.uploadData
-   //       };
+   /* getUploadData().then(result=>
+    {
+        findUserData().then(data=>
+        {
+          var tempData = 
+          {
+            location: data.location,
+            provider: data.provider,
+            data: result.uploadData
+          };
+          
+        })
+      })*/
         postData(myobj)
-        //  postData(tempData);
+        //postData(tempData);
    //     }) 
   //  })
 //});
@@ -157,7 +162,7 @@ function getUploadData(){
           if(ipAddress[0]==='['){   
             ipAddress = ipAddress.slice(1,-1);
           }
-        
+          var ips_to_locations={};
           if(!ips_to_locations.hasOwnProperty(ipAddress) && !current_ips.includes(ipAddress)){
             current_ips.push(ipAddress);
             
@@ -193,6 +198,7 @@ function getUploadData(){
   
           }
           console.log(uploadData.length,queries);
+
           const result={
             uploadData: uploadData,
             uniqueIPs: queries
@@ -207,38 +213,64 @@ function getUploadData(){
   
   }
   
-function postData(userData){
-
- //   $.post("../database/upload_to_database.php",{userData: JSON.stringify(userData)},(res)=>{
- //     console.log(res);
-  //  });
-for (let i=0; i<userData.length; i++)
- {
+  var latitude;
+  var longitude;
+  var provider;
   
-      wait= userData[i].wait;
-      request_method= userData[i].request_method;
-      url= userData[i].url;
+
+  $.getJSON('https://ipapi.co/json/', function(data){
+
+    latitude = data.latitude;
+    longitude = data.longitude;
+    provider = data.org;
+    console.log(longitude);
+    console.log(latitude);
+    //console.log(provider);
+
+    //location = latitude.toFixed(4) + "," + longitude.toFixed(4);
+   
+    var moreData ={
+      provider : provider,
+      latitude : latitude,
+      longitude : longitude
+    }
+
+    if(!!longitude, !!latitude, !!provider){
+      console.log(provider);}
+
+  }); 
+    
+  function postData(userData){
+    
+    for (let i=0; i<userData.length; i++)
+ {
+      
+      wait = userData[i].wait;
+      request_method = userData[i].request_method;
+      url = userData[i].url;
       response_status = userData[i].response_status;
       response_status_Text = userData[i].response_status_Text;
       response_age = userData[i].response_age;
-      request_age= userData[i].request_age;
-      Request_content_type= userData[i].Request_content_type;
-      Request_cache_control= userData[i].Request_cache_control;
+      request_age = userData[i].request_age;
+      Request_content_type = userData[i].Request_content_type;
+      Request_cache_control = userData[i].Request_cache_control;
       Request_pragma = userData[i].Request_pragma;
-      Request_expires= userData[i].Request_expires;
-      Request_last_modified= userData[i].Request_last_modified;
+      Request_expires = userData[i].Request_expires;
+      Request_last_modified = userData[i].Request_last_modified;
       Request_host = userData[i].Request_host;
-      startedDateTime= userData[i].startedDateTime;
-      Response_content_type= userData[i].Response_content_type;
-      Response_cache_control= userData[i].Response_cache_control;
-      Response_pragma= userData[i].Response_pragma;
-      Response_expires= userData[i].Response_expires;
+      startedDateTime = userData[i].startedDateTime;
+      Response_content_type = userData[i].Response_content_type;
+      Response_cache_control = userData[i].Response_cache_control;
+      Response_pragma = userData[i].Response_pragma;
+      Response_expires = userData[i].Response_expires;
       Response_last_modified = userData[i].Response_last_modified;
-      Response_host= userData[1].Response_host;
+      Response_host = userData[i].Response_host;
+      longitude = longitude;
+      latitude = latitude;
+      provider = provider;
       console.log(wait); 
-
-
-
+      console.log(latitude);
+      
               $.ajax({
                // url: '{{url("/user_dashboard")}}' ,
                url: '/user_dashboard',
@@ -265,6 +297,9 @@ for (let i=0; i<userData.length; i++)
                   Response_expires: Response_expires,
                   Response_last_modified : Response_last_modified,
                   Response_host: Response_host,
+                  longitude: longitude,
+                  latitude: latitude,
+                  provider: provider
                   },
             
                 cache: false,
@@ -272,17 +307,80 @@ for (let i=0; i<userData.length; i++)
 			   
                 }
               }); 
-            
+              
+                 
               $.ajaxSetup({
   headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
   }
 });  
-}
- event.preventDefault();
- 
-            alert(request_method); 
-            
+
 }
 
+event.preventDefault();
+
+ alert(request_method); 
+  
+            
+}
+/*
+  function findUserData(){
+    return new Promise((resolve,reject)=>{
+      var latitude;
+      var longitude;
+      var location;
+      var provider;
+      
+  
+      $.getJSON('https://ipapi.co/json/', function(data){
+  
+        latitude = data.latitude;
+        longitude = data.longitude;
+        provider = data.org;
+        
+        location = latitude.toFixed(4) + "," + longitude.toFixed(4);
+       
+        var userData = {
+          location : location,
+          provider : provider
+        }
+        
+        if(data){
+          resolve(userData);
+        }
+        else{
+          reject('Error');
+        }
+      });
+    }) 
+  
+  }*/
+
+  
+ /*
+  var latitude;
+  var longitude;
+  var provider;
+  
+
+  $.getJSON('https://ipapi.co/json/', function(data){
+
+    latitude = data.latitude;
+    longitude = data.longitude;
+    provider = data.org;
+    console.log(longitude);
+    console.log(latitude);
+    //console.log(provider);
+
+    //location = latitude.toFixed(4) + "," + longitude.toFixed(4);
    
+    var moreData ={
+      provider : provider,
+      latitude : latitude,
+      longitude : longitude
+    }
+
+    if(!!longitude, !!latitude, !!provider){
+      console.log(provider);}
+
+  });   */
