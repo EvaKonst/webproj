@@ -11,7 +11,7 @@ class DashboardController extends Controller {
   public function __construct() {
     $this->middleware('auth');
   }
-  public function create() {
+  public function index() {
     return view('user.dashboard');
   }
   public function store(Request $request)
@@ -46,7 +46,7 @@ class DashboardController extends Controller {
     $latitude = $request->latitude;
     $provider = $request->provider;
 
-    \DB::table('entries')->insert([
+   $inputs = array(
       
       'user_id' => Auth::user()->id,
       'wait'=>$wait, //This wait coming from ajax request
@@ -72,7 +72,9 @@ class DashboardController extends Controller {
       'longitude'=>$longitude,
       'latitude'=>$latitude,
       'provider'=>$provider,
-  ]);
+      'created_at' => date("Y-m-d H:i:s")
+   );
+    Entry::insert($inputs);
 
     }
 }

@@ -8,7 +8,7 @@ class Entry extends Model
 {
   //  protected $fillable = ['_token'];
   
-  public $timestamps = false;
+  public $timestamps = true;
 
     public function user()
     {

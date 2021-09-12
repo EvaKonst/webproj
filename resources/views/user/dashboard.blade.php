@@ -76,14 +76,17 @@
                 <div class="container">
                     <h1 class="content" style="color: #000;">Visualize Data</h1>
                 </div>
+                <a id="showheatmap" href="{{ route('visualize') }}"  style="text-decoration: none; color: black" class="btn"><button class="myDIV button"> Show Heatmap</a></button>
                 </div>
                 
                 <div class="Column">
                 <div class="container">
-                    <h1 class="content" style="color: #000;"><a href="{{ route('change.password') }}">Edit Profile Information</a></h1>
+                    <h1 class="content" style="color: #000;">Edit Profile Information</h1>
                 </div>
+                <a id="changepass" href="{{ route('change.password') }}"  style="text-decoration: none; color: black" class="btn"><button class="myDIV button"> Change Password</a></button>
+                <a id="viewstats" href="{{ route('basic.statistics') }}" style="text-decoration: none; color: black" class="btn"><button class="myDIV button"> View basic upload statistics</a></button> 
                 </div>
-                    
+          
             </div>
     </body>
 </html>
