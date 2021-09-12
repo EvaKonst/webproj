@@ -45,6 +45,7 @@
                 <div class= "myDIV">
                     <h1 class="content" style="color: #000;">Illustrate Basic Information</h1>
                 </div>
+                <a id="viewstats" href="{{ route('basic.information') }}" style="text-decoration: none; color: black" class="btn"><button class="myDIV button"> View basic information </a></button> 
             </div>
             </div>
             
