@@ -27,6 +27,8 @@ Route::get('/change-password', 'User\ChangePasswordController@index')->middlewar
 Route::post('/change-password', 'User\ChangePasswordController@store')->name('change.password');
 Route::get('/basic-statistics', 'User\BasicStatisticsController@index')->middleware('role:user')->name('basic.statistics');
 Route::get('/getData', 'User\BasicStatisticsController@getData')->middleware('role:user');
+Route::get('/basic_information', 'Admin\BasicInformationController@index')->middleware('role:admin')->name('basic.information');
+Route::get('/getInfo', 'Admin\BasicInformationController@getInfo')->middleware('role:admin');
 Route::get('/visualize', 'User\VisualizeController@index')->middleware('role:user')->name('visualize');
 //Route::get('/basic-statistics/{created_at}', 'User\BasicStatisticsController@getData')->middleware('role:user');
 //Route::resource('/user_dashboard','User\JsonController@index');
