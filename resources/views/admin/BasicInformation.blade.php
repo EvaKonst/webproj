@@ -101,11 +101,11 @@ tr:nth-child(even) {
          type: 'get',
          dataType: 'json',
          success: function(outputs){
+          console.log(outputs['mydt']);
+                 var registered_users = outputs['mydt'][0];
+                 var number_unique_domains = outputs['mydt'][1];
+                 var number_unique_provider = outputs['mydt'][2];
 
-                 var registered_users = outputs['mydt'].reg_users;
-
-                 var number_unique_domains = outputs['mydt'].unique_domains_num;
-                 var number_unique_provider = outputs['mydt'].unique_provider_num;
                  var tr_str = "<tr>" +
                    "<td align='center'>" + registered_users + "</td>" +
                    "<td align='center'>" + number_unique_domains + "</td>" +
