@@ -53,9 +53,14 @@ tr:nth-child(even) {
       <table border='1' id='adminTable' style='border-collapse: collapse;'>
        <thead>
         <tr>
-          <th>Last Upload Made At:</th>
-          <th>Number of Entries Thus Far:</th>
-          <th>Number of Entries Thus Far:</th>
+          <th>Registered Users:</th>
+          <th>Number of unique Domains:</th>
+          <th>Number of unique Providers:</th>
+          <th>Number of GET request method:</th>
+          <th>Number of POST request method:</th>
+          <th>Number of OPTIONS request method:</th>
+          <th>Number of HEAD request method:</th>
+          <th>Number of PUT request method:</th>
         </tr>
        </thead>
        <tbody></tbody>
@@ -105,11 +110,21 @@ tr:nth-child(even) {
                  var registered_users = outputs['mydt'][0];
                  var number_unique_domains = outputs['mydt'][1];
                  var number_unique_provider = outputs['mydt'][2];
+                 var num_get_meth = outputs['mydt'][3];
+                 var num_post_meth = outputs['mydt'][4];
+                 var num_options_meth = outputs['mydt'][5];
+                 var num_head_meth = outputs['mydt'][6];
+                 var num_put_meth = outputs['mydt'][7];
 
                  var tr_str = "<tr>" +
                    "<td align='center'>" + registered_users + "</td>" +
                    "<td align='center'>" + number_unique_domains + "</td>" +
                    "<td align='center'>" + number_unique_provider + "</td>" +
+                   "<td align='center'>" + num_get_meth + "</td>" +
+                   "<td align='center'>" + num_post_meth + "</td>" +
+                   "<td align='center'>" + num_options_meth + "</td>" +
+                   "<td align='center'>" + num_head_meth + "</td>" +
+                   "<td align='center'>" + num_put_meth + "</td>" +
                  "</tr>";
                  
                  $("#adminTable tbody").append(tr_str);
