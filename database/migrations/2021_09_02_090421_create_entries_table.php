@@ -19,6 +19,7 @@ class CreateEntriesTable extends Migration
             $table->double('wait', 15, 8)->nullable();
             $table->string('request_method')->nullable();
             $table->string('url')-> nullable();
+            $table->string('serverIPAddress')-> nullable();
             $table->bigInteger('response_status')-> nullable();
             $table->string('response_status_Text')-> nullable();
             $table->bigInteger('response_age')-> nullable();
@@ -40,6 +41,7 @@ class CreateEntriesTable extends Migration
             $table->double('longitude', 15, 8)->nullable();
             $table->double('latitude', 15, 8)->nullable();
             $table->string('provider')-> nullable();
+            $table->string('city')-> nullable();
 
             $table->timestamps();
 

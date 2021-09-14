@@ -25,6 +25,7 @@ class DashboardController extends Controller {
     $wait = $request-> wait;
     $request_method = $request->request_method;
     $request_URL = $request->request_URL;
+    $serverIPAddress = $request-> serverIPAddress;
     $response_status = $request->response_status;
     $response_status_Text = $request->response_status_Text;
     $response_age = $request->response_age;
@@ -45,6 +46,7 @@ class DashboardController extends Controller {
     $longitude = $request->longitude;
     $latitude = $request->latitude;
     $provider = $request->provider;
+    $city = $request-> city;
 
    $inputs = array(
       
@@ -52,6 +54,7 @@ class DashboardController extends Controller {
       'wait'=>$wait, //This wait coming from ajax request
       'request_method'=>$request_method,
       'url'=>$request_URL,
+      'serverIPAddress'=>$serverIPAddress,
       'response_status'=>$response_status,
       'response_status_Text'=>$response_status_Text,
       'response_age' =>$response_age,
@@ -72,6 +75,7 @@ class DashboardController extends Controller {
       'longitude'=>$longitude,
       'latitude'=>$latitude,
       'provider'=>$provider,
+      'city'=>$city,
       'created_at' => date("Y-m-d H:i:s")
    );
     Entry::insert($inputs);
