@@ -30,6 +30,7 @@ Route::get('/getData', 'User\BasicStatisticsController@getData')->middleware('ro
 Route::get('/basic_information', 'Admin\BasicInformationController@index')->middleware('role:admin')->name('basic.information');
 Route::get('/getInfo', 'Admin\BasicInformationController@getInfo')->middleware('role:admin');
 Route::get('/visualize', 'User\VisualizeController@index')->middleware('role:user')->name('visualize');
+Route::get('/gettheData', 'User\VisualizeController@gettheData')->middleware('role:user');
 //Route::get('/basic-statistics/{created_at}', 'User\BasicStatisticsController@getData')->middleware('role:user');
 //Route::resource('/user_dashboard','User\JsonController@index');
 //Route::get('/user_dashboard', 'User\JsonController@index')->middleware('role:user');

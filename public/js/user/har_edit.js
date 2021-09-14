@@ -121,25 +121,32 @@ uploadJSON.addEventListener("click",()=>{
    });
 
 function uploadJson(){
-   /* getUploadData().then(result=>
+    matchcity(myobj).then(result=>
     {
-        findUserData().then(data=>
-        {
-          var tempData = 
-          {
-            location: data.location,
-            provider: data.provider,
-            data: result.uploadData
-          };
-          
-        })
-      })*/
-        postData(myobj)
+        postData(userData);
+      });
+      //matchcity(myobj)
+       // postData(myobj)
         //postData(tempData);
    //     }) 
   //  })
 //});
+}
 
+function matchcity(myobj){
+for (let i=0; i<myobj.length; i++)
+    {
+      let ipAddress = myobj[i].serverIPAddress;
+      console.log(ipAddress);
+        $.getJSON( "https://freegeoip.app/json/"+ipAddress, function(newdata){
+     
+      city = newdata.city;
+      console.log(city);
+      var newmoredata={
+        city : city
+      }
+  })
+}
 }
 
 function getUploadData(){
@@ -218,6 +225,7 @@ function getUploadData(){
   var latitude;
   var longitude;
   var provider;
+  var city;
   
 
   $.getJSON('https://ipapi.co/json/', function(data){
@@ -241,15 +249,27 @@ function getUploadData(){
       console.log(provider);}
 
   }); 
-    
+ 
+  
   function postData(userData){
-    
+    /*for (let i=0; i<userData.length; i++)
+    {
+      let ipAddress = myobj[i].serverIPAddress;
+      console.log(ipAddress);
+        $.getJSON( "https://freegeoip.app/json/"+ipAddress, function(newdata){
+     
+      city = newdata.city;
+      console.log(city);
+  })
+}
+      */
     for (let i=0; i<userData.length; i++)
  {
-      
+
       wait = userData[i].wait;
       request_method = userData[i].request_method;
       request_URL= myobj[i].request_URL;
+      serverIPAddress = myobj[i].serverIPAddress;
       response_status = userData[i].response_status;
       response_status_Text = userData[i].response_status_Text;
       response_age = userData[i].response_age;
@@ -270,9 +290,11 @@ function getUploadData(){
       longitude = longitude;
       latitude = latitude;
       provider = provider;
+      city = city;
       console.log(request_URL); 
       console.log(latitude);
-      
+      console.log(city);
+     
               $.ajax({
                // url: '{{url("/user_dashboard")}}' ,
                url: '/user_dashboard',
@@ -282,6 +304,7 @@ function getUploadData(){
                   wait: wait, 
                   request_method: request_method,
                   request_URL: request_URL,
+                  serverIPAddress: serverIPAddress,
                   response_status : response_status,
                   response_status_Text : response_status_Text,
                   response_age : response_age,
@@ -301,7 +324,8 @@ function getUploadData(){
                   Response_host: Response_host,
                   longitude: longitude,
                   latitude: latitude,
-                  provider: provider
+                  provider: provider,
+                  city: city
                   },
             
                 cache: false,
@@ -317,6 +341,7 @@ function getUploadData(){
   }
 });  
 
+
 }
 
 event.preventDefault();
@@ -325,64 +350,4 @@ event.preventDefault();
   
             
 }
-/*
-  function findUserData(){
-    return new Promise((resolve,reject)=>{
-      var latitude;
-      var longitude;
-      var location;
-      var provider;
-      
-  
-      $.getJSON('https://ipapi.co/json/', function(data){
-  
-        latitude = data.latitude;
-        longitude = data.longitude;
-        provider = data.org;
-        
-        location = latitude.toFixed(4) + "," + longitude.toFixed(4);
-       
-        var userData = {
-          location : location,
-          provider : provider
-        }
-        
-        if(data){
-          resolve(userData);
-        }
-        else{
-          reject('Error');
-        }
-      });
-    }) 
-  
-  }*/
 
-  
- /*
-  var latitude;
-  var longitude;
-  var provider;
-  
-
-  $.getJSON('https://ipapi.co/json/', function(data){
-
-    latitude = data.latitude;
-    longitude = data.longitude;
-    provider = data.org;
-    console.log(longitude);
-    console.log(latitude);
-    //console.log(provider);
-
-    //location = latitude.toFixed(4) + "," + longitude.toFixed(4);
-   
-    var moreData ={
-      provider : provider,
-      latitude : latitude,
-      longitude : longitude
-    }
-
-    if(!!longitude, !!latitude, !!provider){
-      console.log(provider);}
-
-  });   */
