@@ -1,61 +1,48 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+ 
+<b> PROJECT ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΥ ΚΑΙ ΣΥΣΤΗΜΑΤΩΝ ΣΤΟΝ ΠΑΓΚΟΣΜΙΟ ΙΣΤΟ </b>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Πηγαίνοντας στην αρχική σελίδα, ο χρήστης έχει την επιλογή να κάνει LOGIN ή REGISTER.
 
-## About Laravel
+ 	LOGIN
+ 
+Ο χρήστης κάνει login βάζοντας το e-mail του και τον κωδικό πρόσβασης που έχει επιλέξει. Σε περίπτωση που τα στοιχεία είναι λάθος ή τα πεδία είναι κενά, εμφανίζεται το κατάλληλο μήνυμα λάθους.
+ 
+ 	REGISTER
+ 
+Σε περίπτωση κενού πεδίου ή ήδη εγγεγραμένου χρήστη εμφανίζεται το κατάλληλο μήνυμα λάθους. Επιπλέον, ο κωδικός πρόσβασης πρέπει να περιέχει τουλάχιστον ένα κεφαλαίο γράμμα, ένα αριθμό και κάποιο σύμβολο (π.χ. #$*&@).
+ 
+ 	USER
+ 
+Μετά την επιτυχή σύνδεση ή εγγραφή του χρήστη, αυτός μεταφέρεται στο dashboard του user. Όλοι οι χρήστες που εγγράφονται στο σύστημα έχουν ρόλο user by default, μέχρι να γίνει αλλαγή του ρόλου τους μέσω της Laravel. Όλα τα paths από αυτό το σημείο και έπειτα είναι προστατευμένα, δηλαδή ένας admin δε θα μπορεί να έχει πρόσβαση στο /user_dashboard, στο /basic-statistics κ.τ.λ. Εάν το επιχειρήσει, θα μεταφερθεί ξανά στο login page. Στο dashboard αυτό, ένας user έχει τις επιλογές να κάνει: α) τοπική αποθήκευση ή upload HAR αρχείων, β) οπτικοποίηση των δεδομένων που έχει ανεβάσει, γ) να αλλάξει τον κωδικό του και να δει βασικά στατιστικά για τα entries του. 
+ 	
+    Upload data
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<b>Επιλογή αρχείου: </b>Πατώντας αυτό το κουμπί ανοίγει ο file explorer, επιτρέποντας στον χρήστη να διαλέξει το HAR αρχείο που θέλει να ανεβάσει. Ήδη σε αυτό το σημείο φιλτράρονται οι ευαίσθητες πληροφορίες, κρατώντας μόνο τα απαραίτητα πεδία.
+ 
+<b> Store data locally: </b> Με το πάτημα αυτού του κουμπιού το φιλτραρισμένο HAR κατεβαίνει στον υπολογιστή του χρήστη.
+ 
+<b> Upload data: </b> Τα entries του φιλτραρισμένου HAR αποθηκεύονται στη βάση δεδομένων.  
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+	Change Password
+Ένας χρήστης εδώ μπορεί να αλλάξει το password του. Το νέο password πρέπει να ακολουθεί τους ίδιους κανόνες με το αρχικό.
+ 
+	View basic upload statistics
+Εδώ ένας χρήστης μπορεί να δει: α) το πλήθος των εγγραφών που έχει πραγματοποιήσει στο σύστημα και β) την ώρα του τελευταίου upload.
+ 
+ 	ADMIN
+ 
+Μετά την επιτυχή σύνδεση ή εγγραφή του χρήστη, αυτός μεταφέρεται στο dashboard του admin. Όλα τα paths από αυτό το σημείο και έπειτα είναι προστατευμένα, δηλαδή ένας user δε θα μπορεί να έχει πρόσβαση.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  	Basic Information 
 
-## Learning Laravel
+Ο διαχειριστής βλέπει σε πίνακες:
+a. Το πλήθος των εγγεγραμμένων χρηστών
+b. Το πλήθος των εγγραφών στη βάση ανά τύπο (μέθοδο) αίτησης
+c. Το πλήθος των εγγραφών στη βάση ανά κωδικό (status) απόκρισης
+d. Το πλήθος των μοναδικών domains που υπάρχουν στη βάση
+e. Το πλήθος των μοναδικών παρόχων συνδεσιμότητας που υπάρχουν στη βάση
+f. Τη μέση ηλικία των ιστοαντικειμένων τη στιγμή που ανακτήθηκαν, ανά CONTENT-TYPE   
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+ 
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
