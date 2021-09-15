@@ -42,6 +42,7 @@ class CreateEntriesTable extends Migration
             $table->double('latitude', 15, 8)->nullable();
             $table->string('provider')-> nullable();
             $table->string('city')-> nullable();
+            
 
             $table->timestamps();
 

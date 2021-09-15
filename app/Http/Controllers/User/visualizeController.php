@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Khill\Lavacharts\Lavacharts;
 use App\User;
 use App\Entry;
+use App\city_user;
 use Auth;
 use Redirect,Response;
 Use charts;
@@ -36,11 +38,13 @@ class visualizeController extends Controller
     public function gettheData(){
         // get records from database
         $lava = new Lavacharts; 
+        $users = $lava->DataTable();
         $userId = Auth::user()->id;
-        $outputs = Entry::where("user_id", $userId)->pluck('serverIPAddress')->first();
-        
-        echo json_encode($outputs);
-        exit;
+        $data = Entry::select("city as 0")->where('userId', $userId) ->get()->toArray();
+        $users->addStringColumn('City')
+        ->addRows($data);
+        $lava->GeoChart('Users', $users);
+        return view('lavacharts',compact('lava'));
       }
 
     /**
