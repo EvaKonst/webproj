@@ -18,8 +18,20 @@ for (x in entries) {
     //console.log(url);
     var cleanedUrl = url.split('/')[2];
     let ipAddress = myarray.serverIPAddress;
-    
+    if(ipAddress[0]==='['){
+      ipAddress = ipAddress.slice(1,-1);
+    }
+    console.log(ipAddress);
+
+      $.getJSON( "https://freegeoip.app/json/"+ipAddress, function(newdata){
+   
+    cities = newdata.city;
+    console.log(cities);    
+    })
+    let city = myarray.cities;
     //console.log(cleanedUrl);
+
+    while(!!city){
 
     myobj[x] = {
         startedDateTime: myarray.startedDateTime,
@@ -28,7 +40,8 @@ for (x in entries) {
         request_method: myarray.request.method,
         request_URL: cleanedUrl,
         response_status: myarray.response.status,
-        response_status_Text: myarray.response.statusText
+        response_status_Text: myarray.response.statusText,
+        city: city
         }
     //console.log(request_URL);
     for(y in myarray.request.headers){
@@ -102,18 +115,7 @@ for (x in entries) {
     }
     console.log(myobj[x]);
    
-      
-      if(ipAddress[0]==='['){
-        ipAddress = ipAddress.slice(1,-1);
-      }
-      console.log(ipAddress);
-        $.getJSON( "https://freegeoip.app/json/"+ipAddress, function(newdata){
-     
-      myobj[x].city = newdata.city;
-      console.log(city);
-      
-  })
-
+  }
 }
 };          
 fr.readAsText(this.files[0]);
