@@ -37,7 +37,7 @@ class visualizeController extends Controller
         // get records from database
         $lava = new Lavacharts; 
         $userId = Auth::user()->id;
-        $outputs['mydt'] = array( Entry::where("user_id", $userId)->distinct()->pluck('serverIPAddress'));
+        $outputs = Entry::where("user_id", $userId)->pluck('serverIPAddress')->first();
         
         echo json_encode($outputs);
         exit;

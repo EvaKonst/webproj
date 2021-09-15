@@ -17,12 +17,14 @@ for (x in entries) {
     let url = myarray.request.url;
     //console.log(url);
     var cleanedUrl = url.split('/')[2];
+    let ipAddress = myarray.serverIPAddress;
+    
     //console.log(cleanedUrl);
 
     myobj[x] = {
         startedDateTime: myarray.startedDateTime,
         wait: myarray.timings.wait,
-        serverIPAddress: myarray.serverIPAddress,
+        serverIPAddress: ipAddress,
         request_method: myarray.request.method,
         request_URL: cleanedUrl,
         response_status: myarray.response.status,
@@ -99,6 +101,19 @@ for (x in entries) {
         }
     }
     console.log(myobj[x]);
+   
+      
+      if(ipAddress[0]==='['){
+        ipAddress = ipAddress.slice(1,-1);
+      }
+      console.log(ipAddress);
+        $.getJSON( "https://freegeoip.app/json/"+ipAddress, function(newdata){
+     
+      myobj[x].city = newdata.city;
+      console.log(city);
+      
+  })
+
 }
 };          
 fr.readAsText(this.files[0]);
@@ -120,33 +135,18 @@ uploadJSON.addEventListener("click",()=>{
  uploadJson();
    });
 
-function uploadJson(){
-    matchcity(myobj).then(result=>
-    {
-        postData(userData);
-      });
-      //matchcity(myobj)
-       // postData(myobj)
-        //postData(tempData);
-   //     }) 
-  //  })
-//});
-}
 
-function matchcity(myobj){
-for (let i=0; i<myobj.length; i++)
-    {
-      let ipAddress = myobj[i].serverIPAddress;
-      console.log(ipAddress);
-        $.getJSON( "https://freegeoip.app/json/"+ipAddress, function(newdata){
-     
-      city = newdata.city;
-      console.log(city);
-      var newmoredata={
-        city : city
-      }
-  })
-}
+
+
+
+function uploadJson(){
+ 
+   // matchcity(myobj);
+     postData(myobj);
+      //postData(tempData);
+ //     }) 
+//  })
+//});
 }
 
 function getUploadData(){
@@ -290,7 +290,7 @@ function getUploadData(){
       longitude = longitude;
       latitude = latitude;
       provider = provider;
-      city = city;
+      city = userData[i].city;
       console.log(request_URL); 
       console.log(latitude);
       console.log(city);

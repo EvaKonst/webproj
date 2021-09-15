@@ -31,6 +31,15 @@
   <div class="alert alert-light alert-dismissible fade show" role="alert">
     You can see at the map below the IP locations of all HTTP requests.
     <input type='button' value='Show Information' id='getarequest'>
+    <br>
+     <table border='1' id='usercityTable' style='border-collapse: collapse;'>
+       <thead>
+        <tr>
+          <th>serverIPAddress:</th>
+        </tr>
+       </thead>
+       <tbody></tbody>
+     </table>
   </div>
 
 </div>
@@ -74,22 +83,27 @@
          type: 'get',
          dataType: 'json',
          success: function(outputs){
-            for(i=0; i<outputs['mydt']; i++)
-            {
-                 var serverIPaddress = outputs['mydt'][i];
-                 var cities;
-                 $.getJSON('https://freegeoip.app/json/', function(data){
-                 cities[i] = data.city;
-                });
-                }
-            }
+           
+                // var serverIPaddress = outputs;
+                 //var cities;
+                 //for (let i=0; i<serverIPaddress.length; i++)
+                // $.getJSON('https://freegeoip.app/json/'+serverIPaddress, function(data){
+                 //cities = data.city; });
+                //}
+                var serverIPaddress = outputs;
+                //var cities;
+                var tr_str = "<tr>" +
+                   "<td align='center'>" + serverIPAddress + "</td>" +
+                  // "<td align='center'>" + city + "</td>" +
+                 "</tr>";
+                 
+                 $("#usercityTable tbody").append(tr_str);
+            
       
-       //console.log(registered_users);
-       $.ajaxSetup({
-        headers: {
-        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-        }
-        });  
+        //console.log(cities);
+        console.log(outputs);
+        console.log(serverIPaddress);
+      }
     });  
 
      }
