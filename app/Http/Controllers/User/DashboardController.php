@@ -16,12 +16,7 @@ class DashboardController extends Controller {
   }
   public function store(Request $request)
     {
-    //    $request->validate([
-    //    ]);
-    //    Entry::index($request->all());
-    //    return json_encode(array(
-    //        "statusCode"=>200
-    //    ));
+   
     $wait = $request-> wait;
     $request_method = $request->request_method;
     $request_URL = $request->request_URL;
@@ -46,7 +41,7 @@ class DashboardController extends Controller {
     $longitude = $request->longitude;
     $latitude = $request->latitude;
     $provider = $request->provider;
-    $city = $request-> city;
+    $city = $request->city;
 
    $inputs = array(
       

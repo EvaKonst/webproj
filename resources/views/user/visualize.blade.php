@@ -22,25 +22,16 @@
     </div>
     <div id="mapid">
 
-  <!-- <div class="backdrop">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div> -->
+  
 
   <div class="alert alert-light alert-dismissible fade show" role="alert">
     You can see at the map below the IP locations of all HTTP requests.
-    <input type='button' value='Show Information' id='getarequest'>
     <br>
-     <table border='1' id='usercityTable' style='border-collapse: collapse;'>
-       <thead>
-        <tr>
-          <th>serverIPAddress:</th>
-        </tr>
-       </thead>
-       <tbody></tbody>
-     </table>
-  </div>
+    <div>   
+          <div id="geo"></div>
+       <?= $lava->render('GeoChart', 'Users', 'pop-div') ?>
+         </div>
+
 
 </div>
  </div>
@@ -55,22 +46,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <?php 
-    $includes = array('<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>',
-    ' <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>',
-    '<script src="../plugins/heatmaps.js"></script>',
-    '<script src="../plugins/leaflet-heatmap.js"></script>');
-    ?>
+    
+    <meta charset="utf-8">
     </head>
-
+    
+  
+      
      <script type='text/javascript'>
      $(document).ready(function(){
 
-       // Fetch all records
+      
        $('#getarequest').click(function(){
 	 fetchmap();
        });
@@ -82,27 +67,9 @@
          url: '/gettheData',
          type: 'get',
          dataType: 'json',
-         success: function(outputs){
+         success: function(){
            
-                // var serverIPaddress = outputs;
-                 //var cities;
-                 //for (let i=0; i<serverIPaddress.length; i++)
-                // $.getJSON('https://freegeoip.app/json/'+serverIPaddress, function(data){
-                 //cities = data.city; });
-                //}
-                var serverIPaddress = outputs;
-                //var cities;
-                var tr_str = "<tr>" +
-                   "<td align='center'>" + serverIPAddress + "</td>" +
-                  // "<td align='center'>" + city + "</td>" +
-                 "</tr>";
-                 
-                 $("#usercityTable tbody").append(tr_str);
-            
-      
-        //console.log(cities);
-        console.log(outputs);
-        console.log(serverIPaddress);
+           
       }
     });  
 

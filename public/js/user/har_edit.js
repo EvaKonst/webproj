@@ -9,13 +9,12 @@ var myfileobj = JSON.parse(fr.result);
 
 const entries = myfileobj.log.entries;
 myobj = [];
+var mycity = [];
 
-
-for (x in entries) {
+for (let x in entries) {
     
     let myarray = entries[x];
     let url = myarray.request.url;
-    //console.log(url);
     var cleanedUrl = url.split('/')[2];
     let ipAddress = myarray.serverIPAddress;
     if(ipAddress[0]==='['){
@@ -26,97 +25,106 @@ for (x in entries) {
       $.getJSON( "https://freegeoip.app/json/"+ipAddress, function(newdata){
    
     cities = newdata.city;
-    console.log(cities);    
-    })
-    let city = myarray.cities;
-    //console.log(cleanedUrl);
-
-    while(!!city){
-
-    myobj[x] = {
-        startedDateTime: myarray.startedDateTime,
-        wait: myarray.timings.wait,
-        serverIPAddress: ipAddress,
-        request_method: myarray.request.method,
-        request_URL: cleanedUrl,
-        response_status: myarray.response.status,
-        response_status_Text: myarray.response.statusText,
-        city: city
-        }
-    //console.log(request_URL);
-    for(y in myarray.request.headers){
-        
-        let headerName1 = myarray.request.headers[y].name;
-        let headerValue1 = myarray.request.headers[y].value;
-
-        if (headerName1 === "content-type")
-        {
-            myobj[x].Request_content_type = headerValue1;
-        }
-        else if (headerName1 === "host")
-        {
-            myobj[x].Request_host = headerValue1;
-        }
-        else if (headerName1 === "age")
-        {
-            myobj[x].Request_age = headerValue1;
-        }
-        else if (headerName1 === "expires")
-        {
-            myobj[x].Request_expires = headerValue1;
-        }
-        else if (headerName1 === "pragma")
-        {
-            myobj[x].Request_pragma = headerValue1;
-        }
-        else if (headerName1 === "cache-control")
-        {
-            myobj[x].Request_cache_control = headerValue1;
-        }
-        else if (headerName1 === "last-modified")
-        {
-            myobj[x].Request_last_modified = headerValue1;
-        }
-    }
+  
+    city = cities; 
+    doSomething(city);
     
-    for(y in myarray.response.headers){
-        
-        let headerName = myarray.response.headers[y].name;
-        let headerValue = myarray.response.headers[y].value;
-
-        if (headerName === "content-type")
-        {
-            myobj[x].Response_content_type = headerValue;
-        }
-        else if (headerName === "host")
-        {
-            myobj[x].Response_host = headerValue;
-        }
-        else if (headerName === "age")
-        {
-            myobj[x].Response_age = headerValue;
-        }
-        else if (headerName === "expires")
-        {
-            myobj[x].Response_expires = headerValue;
-        }
-        else if (headerName === "pragma")
-        {
-            myobj[x].Response_pragma = headerValue;
-        }
-        else if (headerName === "cache-control")
-        {
-            myobj[x].Response_cache_control = headerValue;
-        }
-        else if (headerName === "last-modified")
-        {
-            myobj[x].Response_last_modified = headerValue;
-        }
-    }
-    console.log(myobj[x]);
+    
+  })
+  
+  function doSomething(city) {
+  mycity[x]= city;
    
+  console.log(mycity[x]); 
+
+ }
+ console.log(mycity[x]);
+
+  myobj[x] = {
+      startedDateTime: myarray.startedDateTime,
+      wait: myarray.timings.wait,
+      serverIPAddress: ipAddress,
+      request_method: myarray.request.method,
+      request_URL: cleanedUrl,
+      response_status: myarray.response.status,
+      response_status_Text: myarray.response.statusText,
+      
+      }
+  
+  for(y in myarray.request.headers){
+      
+      let headerName1 = myarray.request.headers[y].name;
+      let headerValue1 = myarray.request.headers[y].value;
+
+      if (headerName1 === "content-type")
+      {
+          myobj[x].Request_content_type = headerValue1;
+      }
+      else if (headerName1 === "host")
+      {
+          myobj[x].Request_host = headerValue1;
+      }
+      else if (headerName1 === "age")
+      {
+          myobj[x].Request_age = headerValue1;
+      }
+      else if (headerName1 === "expires")
+      {
+          myobj[x].Request_expires = headerValue1;
+      }
+      else if (headerName1 === "pragma")
+      {
+          myobj[x].Request_pragma = headerValue1;
+      }
+      else if (headerName1 === "cache-control")
+      {
+          myobj[x].Request_cache_control = headerValue1;
+      }
+      else if (headerName1 === "last-modified")
+      {
+          myobj[x].Request_last_modified = headerValue1;
+      }
   }
-}
+  
+  for(y in myarray.response.headers){
+      
+      let headerName = myarray.response.headers[y].name;
+      let headerValue = myarray.response.headers[y].value;
+
+      if (headerName === "content-type")
+      {
+          myobj[x].Response_content_type = headerValue;
+      }
+      else if (headerName === "host")
+      {
+          myobj[x].Response_host = headerValue;
+      }
+      else if (headerName === "age")
+      {
+          myobj[x].Response_age = headerValue;
+      }
+      else if (headerName === "expires")
+      {
+          myobj[x].Response_expires = headerValue;
+      }
+      else if (headerName === "pragma")
+      {
+          myobj[x].Response_pragma = headerValue;
+      }
+      else if (headerName === "cache-control")
+      {
+          myobj[x].Response_cache_control = headerValue;
+      }
+      else if (headerName === "last-modified")
+      {
+          myobj[x].Response_last_modified = headerValue;
+      }
+  }
+  console.log(myobj[x]);
+
+    
+  }
+
 };          
 fr.readAsText(this.files[0]);
 }) 
@@ -143,86 +151,11 @@ uploadJSON.addEventListener("click",()=>{
 
 function uploadJson(){
  
-   // matchcity(myobj);
      postData(myobj);
-      //postData(tempData);
- //     }) 
-//  })
-//});
+
 }
 
-function getUploadData(){
-    //a promise is a returned object to which you attach callbacks, instead of passing callbacks into a function
-    return new Promise((resolve,reject)=>{
-      uploadData = [...myobj]
-  
-      let queries=0;
-      var current_ips = [];
-      var api_calls = [];
-      var latitude;
-      var longitude;
-  
-      for(let i=0; i<uploadData.length; i++){
-  
-          
-  
-  
-          let ipAddress = uploadData[i].serverIPAddress;
-          //In case there is a IPv6 address
-          //they brackets that should be removed
-          if(ipAddress[0]==='['){   
-            ipAddress = ipAddress.slice(1,-1);
-          }
-          var ips_to_locations={};
-          if(!ips_to_locations.hasOwnProperty(ipAddress) && !current_ips.includes(ipAddress)){
-            current_ips.push(ipAddress);
-            
-            queries++;
-            api_calls.push(
-  
-              $.ajax({
-                type: 'GET',
-                url: "https://freegeoip.app/json/"+ipAddress,
-                crossDomain: true,
-                dataType: 'json',
-                success: function(data){
-                  serverlocation = data.latitude+','+data.longitude;
-                  ips_to_locations[ipAddress] =serverlocation;
-                  uploadData[i].serverLocation = serverlocation;
-                }
-             })
-            );
-              
-          }
-      }
-        $.when(...api_calls)
-        .then((data)=>{
-          for(let i=0; i<uploadData.length; i++){
-            let ipAddress = uploadData[i].serverIPAddress;
-            if(ipAddress[0]==='['){
-              ipAddress = ipAddress.slice(1,-1);
-            }
-           
-            if(!uploadData[i].hasOwnProperty('serverLocation')){
-              uploadData[i].serverLocation = ips_to_locations[ipAddress];
-            }
-  
-          }
-          console.log(uploadData.length,queries);
 
-          const result={
-            uploadData: uploadData,
-            uniqueIPs: queries
-          };
-  
-          resolve(result);
-        })
-        .catch((err)=>{
-          reject(err);
-        });
-    });
-  
-  }
   
   var latitude;
   var longitude;
@@ -235,11 +168,6 @@ function getUploadData(){
     latitude = data.latitude;
     longitude = data.longitude;
     provider = data.org;
-    console.log(longitude);
-    console.log(latitude);
-    //console.log(provider);
-
-    //location = latitude.toFixed(4) + "," + longitude.toFixed(4);
    
     var moreData ={
       provider : provider,
@@ -254,17 +182,7 @@ function getUploadData(){
  
   
   function postData(userData){
-    /*for (let i=0; i<userData.length; i++)
-    {
-      let ipAddress = myobj[i].serverIPAddress;
-      console.log(ipAddress);
-        $.getJSON( "https://freegeoip.app/json/"+ipAddress, function(newdata){
-     
-      city = newdata.city;
-      console.log(city);
-  })
-}
-      */
+   
     for (let i=0; i<userData.length; i++)
  {
 
@@ -292,7 +210,7 @@ function getUploadData(){
       longitude = longitude;
       latitude = latitude;
       provider = provider;
-      city = userData[i].city;
+      city = cities;
       console.log(request_URL); 
       console.log(latitude);
       console.log(city);
@@ -348,7 +266,6 @@ function getUploadData(){
 
 event.preventDefault();
 
- alert(request_method); 
   
             
 }
